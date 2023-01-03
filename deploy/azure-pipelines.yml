@@ -1,0 +1,16 @@
+trigger: none
+
+pool:
+   name: build_vm
+
+jobs:
+  - job:
+    steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        connectedServiceName : 'Terraform'
+        location: 'westeu'
+        resourceGroupName: notalab
+        csmFile: bicep/main.bicep
+        overrideParameters: >
+          -environmentType nonprod
